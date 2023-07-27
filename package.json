@@ -1,0 +1,20 @@
+{
+  "name": "di-ipv-cri-templates",
+  "version": "0.0.1",
+  "description": "Micro-templates for creating and developing Digital Identity Credential Issuers",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphagov/di-ipv-cri-templates.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alphagov/di-ipv-cri-templates/issues"
+  },
+  "homepage": "https://github.com/alphagov/di-ipv-cri-templates#readme"
+}
