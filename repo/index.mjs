@@ -1,5 +1,5 @@
 export default async function (plop) {
-  plop.setGenerator("dotfiles", {
+  plop.setGenerator("repo:dotfiles", {
     description: "General configuration through .dotfiles",
     prompts: [],
     actions: [
@@ -14,7 +14,7 @@ export default async function (plop) {
     ],
   });
 
-  plop.setGenerator("github", {
+  plop.setGenerator("repo:github", {
     description: "General configuration through .dotfiles",
     prompts: [],
     actions: [
@@ -29,7 +29,7 @@ export default async function (plop) {
     ],
   });
 
-  plop.setGenerator("docs", {
+  plop.setGenerator("repo:docs", {
     description: "",
     prompts: [],
     actions: [
