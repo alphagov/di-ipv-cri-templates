@@ -24,7 +24,20 @@ export default async function (plop) {
         base: "templates/infrastructure",
         templateFiles: "**",
         verbose: true,
-        force: true,
+        force: false,
+        skipIfExists: true
+      },
+      {
+        type: "append",
+        path: "./infrastructure/template.yaml",
+        pattern: /(Resources:)/,
+        templateFile: "./templates/hbs-files/lambda-resource.hbs",
+      },
+      {
+        type: "append",
+        path: "./infrastructure/template.yaml",
+        pattern: /(Outputs:)/,
+        templateFile: "./templates/hbs-files/lambda-outputs.hbs",
       },
     ],
   });

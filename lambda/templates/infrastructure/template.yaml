@@ -10,30 +10,4 @@ Globals:
     Timeout: 3
 
 Resources:
-  HelloWorldFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ../
-      Handler: hello-world-handler.lambdaHandler
-      FunctionUrlConfig:
-        AuthType: AWS_IAM
-        Cors:
-          AllowOrigins: ["*"]
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: "es2020"
-        Sourcemap: true
-        EntryPoints:
-          - lambdas/{{ kebabCase lambdaName }}/src/hello-world-handler.ts
 Outputs:
-  FunctionURLEndpoint:
-    Description: FURLFunction function name
-    Value: !GetAtt HelloWorldFunctionUrl.FunctionUrl
-  HelloWorldFunction:
-    Description: "HelloWorld Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn

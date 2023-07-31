@@ -1,7 +1,7 @@
 import { APIGatewayProxyResult } from "aws-lambda";
 import { LambdaInterface } from "@aws-lambda-powertools/commons";
 
-export class HelloWorldHandler implements LambdaInterface {
+export class {{ pascalCase lambdaName }}Handler implements LambdaInterface {
   public async handler(
     event: any,
     _context: unknown
@@ -10,5 +10,5 @@ export class HelloWorldHandler implements LambdaInterface {
   }
 }
 
-const handlerClass = new HelloWorldHandler();
+const handlerClass = new {{ pascalCase lambdaName }}Handler();
 export const lambdaHandler = handlerClass.handler.bind(handlerClass);
