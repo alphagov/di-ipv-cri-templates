@@ -3,10 +3,10 @@ export default async function (plop) {
     description: "General configuration for lambdas",
     prompts: [
       {
-        type: 'input',
-        name: 'lambdaName',
-        message: 'Name of Lambda?'
-      }
+        type: "input",
+        name: "lambdaName",
+        message: "Name of Lambda?",
+      },
     ],
     actions: [
       {
@@ -16,7 +16,7 @@ export default async function (plop) {
         templateFiles: "**/**",
         globOptions: { dot: true },
         verbose: true,
-        force: true
+        force: true,
       },
       {
         type: "addMany",
@@ -24,7 +24,7 @@ export default async function (plop) {
         base: "templates/infrastructure",
         templateFiles: "**",
         verbose: true,
-        force: true
+        force: true,
       },
     ],
   });

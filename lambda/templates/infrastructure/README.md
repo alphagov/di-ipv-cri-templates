@@ -1,2 +1,2 @@
 Pre-req
-`npm install -g esbuild`       
+`npm install -g esbuild`

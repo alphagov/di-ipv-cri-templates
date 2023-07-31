@@ -23,5 +23,5 @@ export default {
   },
   testMatch: ["**/tests/**/*.test.ts"],
   preset: "ts-jest",
-  testEnvironment: "node"
+  testEnvironment: "node",
 };
