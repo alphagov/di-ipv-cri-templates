@@ -1,4 +1,26 @@
 export default async function (plop) {
+  plop.setGenerator("stack:new", {
+    description: "General configuration for creating a stack",
+    prompts: [
+      {
+        type: "input",
+        name: "stackName",
+        message: "Name of Stack?",
+      },
+    ],
+    actions: [
+      {
+        type: "addMany",
+        destination: "./infrastructure",
+        base: "templates/infrastructure",
+        templateFiles: "**",
+        verbose: true,
+        force: false,
+        skipIfExists: true,
+      },
+    ],
+  });
+
   plop.setGenerator("lambda:new", {
     description: "General configuration for lambdas",
     prompts: [
@@ -17,15 +39,6 @@ export default async function (plop) {
         globOptions: { dot: true },
         verbose: true,
         force: true,
-      },
-      {
-        type: "addMany",
-        destination: "./infrastructure",
-        base: "templates/infrastructure",
-        templateFiles: "**",
-        verbose: true,
-        force: false,
-        skipIfExists: true
       },
       {
         type: "append",

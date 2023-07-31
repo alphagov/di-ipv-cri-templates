@@ -1,17 +1,7 @@
-  {{ pascalCase lambdaName }}Function:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ../lambdas/{{ kebabCase lambdaName }}
-      Handler: {{ kebabCase lambdaName }}-handler.lambdaHandler
-      FunctionUrlConfig:
-        AuthType: AWS_IAM
-        Cors:
-          AllowOrigins: ["*"]
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: "es2020"
-        Sourcemap: true
-        EntryPoints:
-          - src/{{ kebabCase lambdaName }}-handler.ts
+{{pascalCase lambdaName}}Function: Type: AWS::Serverless::Function Properties:
+CodeUri: ../lambdas/{{kebabCase lambdaName}}
+Handler:
+{{kebabCase lambdaName}}-handler.lambdaHandler FunctionUrlConfig: AuthType:
+AWS_IAM Cors: AllowOrigins: ["*"] Metadata: BuildMethod: esbuild
+BuildProperties: Minify: true Target: "es2020" Sourcemap: true EntryPoints: -
+src/{{kebabCase lambdaName}}-handler.ts
