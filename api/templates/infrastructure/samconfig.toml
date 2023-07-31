@@ -1,8 +1,8 @@
 version = 0.1
 [default.deploy.parameters]
-stack_name = "{{ kebabCase stackName }}"
+stack_name = "{{ kebabCase criName }}"
 resolve_s3 = true
-s3_prefix = "{{ kebabCase stackName }}"
+s3_prefix = "{{ kebabCase criName }}"
 region = "eu-west-2"
 capabilities = "CAPABILITY_IAM"
 image_repositories = []
