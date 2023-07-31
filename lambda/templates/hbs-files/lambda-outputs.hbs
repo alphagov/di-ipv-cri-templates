@@ -1,11 +1,9 @@
-{{pascalCase lambdaName}}FunctionURLEndpoint: Description: FURLFunction function
-name Value: !GetAtt
-{{pascalCase lambdaName}}FunctionUrl.FunctionUrl
-{{pascalCase lambdaName}}Function: Description: "{{pascalCase lambdaName}}
-Lambda Function ARN" Value: !GetAtt
-{{pascalCase lambdaName}}Function.Arn
-{{pascalCase lambdaName}}FunctionIamRole: Description: "Implicit IAM Role
-created for
-{{pascalCase lambdaName}}
-function" Value: !GetAtt
-{{pascalCase lambdaName}}FunctionRole.Arn
+  {{ pascalCase lambdaName }}FunctionURLEndpoint:
+    Description: FURLFunction function name
+    Value: !GetAtt {{ pascalCase lambdaName }}FunctionUrl.FunctionUrl
+  {{ pascalCase lambdaName }}Function:
+    Description: "{{ pascalCase lambdaName }} Lambda Function ARN"
+    Value: !GetAtt {{ pascalCase lambdaName }}Function.Arn
+  {{ pascalCase lambdaName }}FunctionIamRole:
+    Description: "Implicit IAM Role created for {{ pascalCase lambdaName }} function"
+    Value: !GetAtt {{ pascalCase lambdaName }}FunctionRole.Arn
