@@ -1,11 +1,7 @@
-import { APIGatewayProxyResult } from "aws-lambda";
 import { LambdaInterface } from "@aws-lambda-powertools/commons";
 
 export class {{ pascalCase lambdaName }}Handler implements LambdaInterface {
-  public async handler(
-    event: any,
-    _context: unknown
-  ): Promise<APIGatewayProxyResult | any> {
+  public async handler(_event: unknown, _context: unknown): Promise<string> {
     return "Hello, World!";
   }
 }
