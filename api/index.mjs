@@ -20,7 +20,7 @@ export default async function (plop) {
       {
         type: "add",
         path: "deploy.sh",
-        templateFile: "templates/deploy.sh",
+        templateFile: "templates/deploy.sh.hbs",
         verbose: true,
         skipIfExists: true,
       },
