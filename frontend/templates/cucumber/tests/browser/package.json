@@ -1,0 +1,19 @@
+{
+  "name": "di-ipv-cri-toy-front-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:browser:local": "wait-on tcp:127.0.0.1:8050 tcp:127.0.0.1:5050 && API_BASE_URL=http://127.0.0.1:8050 MOCK_API=true cucumber-js --config cucumber.js --tags \"not @skip\"",
+    "test:browser": "MOCK_API=true cucumber-js --config cucumber.js --tags \"not @skip\""
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@cucumber/cucumber": "9.4.0",
+    "axios": "1.4.0",
+    "chai": "4.3.7",
+    "playwright": "1.37.1",
+    "wait-on": "7.0.1"
+  }
+}
