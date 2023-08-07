@@ -24,6 +24,7 @@ export default async function (plop) {
           templateFiles: "**/.*",
           globOptions: { dot: true },
           verbose: true,
+          force: true,
         });
       }
 
@@ -35,6 +36,7 @@ export default async function (plop) {
           templateFiles: "**",
           globOptions: { dot: true },
           verbose: true,
+          force: true,
         });
       }
 
@@ -44,18 +46,21 @@ export default async function (plop) {
           path: "CODEOWNERS",
           templateFile: "templates/CODEOWNERS",
           verbose: true,
+          force: true,
         });
         actions.push({
           type: "add",
           path: "LICENSE",
           templateFile: "templates/LICENSE",
           verbose: true,
+          force: true,
         });
         actions.push({
           type: "add",
           path: "SECURITY.md",
           templateFile: "templates/SECURITY.md",
           verbose: true,
+          force: true,
         });
       }
 
