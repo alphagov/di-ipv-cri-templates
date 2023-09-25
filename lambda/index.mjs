@@ -1,4 +1,19 @@
 export default async function (plop) {
+  plop.setGenerator("lambda:workflow:tests", {
+    description: "General configuration for lambdas",
+    prompts: [],
+    actions: [
+      {
+        type: "add",
+        skipIfExists: false,
+        force: true,
+        path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
+        templateFile:
+          "./templates/workflows/pre-merge-run-lambda-unit-tests.yml",
+      },
+    ],
+  });
+
   plop.setGenerator("lambda:new", {
     description: "General configuration for lambdas",
     prompts: [
@@ -9,6 +24,13 @@ export default async function (plop) {
       },
     ],
     actions: [
+      {
+        type: "add",
+        skipIfExists: true,
+        path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
+        templateFile:
+          "./templates/workflows/pre-merge-run-lambda-unit-tests.yml",
+      },
       {
         type: "addMany",
         destination: "./lambdas/{{ kebabCase lambdaName }}",
