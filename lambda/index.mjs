@@ -6,6 +6,7 @@ export default async function (plop) {
       {
         type: "add",
         skipIfExists: false,
+        force: true,
         path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
         templateFile: "./templates/workflows/pre-merge-run-lambda-unit-tests.yml"
       }
