@@ -8,8 +8,9 @@ export default async function (plop) {
         skipIfExists: false,
         force: true,
         path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
-        templateFile: "./templates/workflows/pre-merge-run-lambda-unit-tests.yml"
-      }
+        templateFile:
+          "./templates/workflows/pre-merge-run-lambda-unit-tests.yml",
+      },
     ],
   });
 
@@ -27,7 +28,8 @@ export default async function (plop) {
         type: "add",
         skipIfExists: true,
         path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
-        templateFile: "./templates/workflows/pre-merge-run-lambda-unit-tests.yml"
+        templateFile:
+          "./templates/workflows/pre-merge-run-lambda-unit-tests.yml",
       },
       {
         type: "addMany",
