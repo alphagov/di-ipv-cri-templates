@@ -23,35 +23,46 @@ export default async function (plop) {
         message: "Name of Lambda?",
       },
     ],
-    actions: [
-      {
-        type: "add",
-        skipIfExists: true,
-        path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
-        templateFile:
-          "./templates/workflows/pre-merge-run-lambda-unit-tests.yml",
-      },
-      {
-        type: "addMany",
-        destination: "./lambdas/{{ kebabCase lambdaName }}",
-        base: "templates/lambdas",
-        templateFiles: "**/**",
-        globOptions: { dot: true },
-        verbose: true,
-        force: true,
-      },
-      {
-        type: "append",
-        path: "./infrastructure/template.yaml",
-        pattern: /(Resources:)/,
-        templateFile: "./templates/infrastructure/resource-fragment.hbs",
-      },
-      {
-        type: "append",
-        path: "./infrastructure/template.yaml",
-        pattern: /(Outputs:)/,
-        templateFile: "./templates/infrastructure/output-fragment.hbs",
-      },
-    ],
+    actions: function (data) {
+      data.criName = plop.getDestBasePath().split("/").slice(-1)[0];
+
+      return [
+        {
+          type: "add",
+          skipIfExists: true,
+          path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
+          templateFile:
+            "./templates/workflows/pre-merge-run-lambda-unit-tests.yml",
+        },
+        {
+          type: "addMany",
+          destination: "./lambdas/{{ kebabCase lambdaName }}",
+          base: "templates/lambdas",
+          templateFiles: "**/**",
+          globOptions: { dot: true },
+          verbose: true,
+          force: true,
+        },
+        {
+          type: "add",
+          skipIfExists: true,
+          path: "./infrastructure/template.yaml",
+          templateFile: "./templates/infrastructure/template.hbs",
+          verbose: true,
+        },
+        {
+          type: "append",
+          path: "./infrastructure/template.yaml",
+          pattern: /(Resources:)/,
+          templateFile: "./templates/infrastructure/resource-fragment.hbs",
+        },
+        {
+          type: "append",
+          path: "./infrastructure/template.yaml",
+          pattern: /(Outputs:)/,
+          templateFile: "./templates/infrastructure/output-fragment.hbs",
+        },
+      ];
+    },
   });
 }
