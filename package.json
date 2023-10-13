@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "plop": "plop --plopfile plopfile.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pre-commit": "pre-commit run --all-files --show-diff-on-failure",
     "pc": "npm run pre-commit"
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/alphagov/di-ipv-cri-templates/issues"
   },
-  "homepage": "https://github.com/alphagov/di-ipv-cri-templates#readme"
+  "homepage": "https://github.com/alphagov/di-ipv-cri-templates#readme",
+  "devDependencies": {
+    "plop": "^4.0.0"
+  }
 }
