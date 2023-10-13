@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "lint:prettier-fix": "pre-commit run prettier --all-files",
-    "lint:eslint": "eslint .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "unit": "jest --silent",
     "test": "npm run unit",
     "test:coverage": "npm run unit -- --coverage",
@@ -24,11 +24,6 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.114",
-    "@typescript-eslint/eslint-plugin": "5.10.2",
-    "@typescript-eslint/parser": "5.10.2",
-    "eslint": "8.8.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-prettier": "4.0.0",
     "typescript": "5.0.4"
   }
 }
