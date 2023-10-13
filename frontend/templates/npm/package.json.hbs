@@ -18,7 +18,9 @@
     "check-translation": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js ../../../../src/locales/",
     "pre-commit": "pre-commit run --all-files --show-diff-on-failure",
     "pc": "npm run pre-commit",
-    "test": "jest"
+    "unit": "jest --silent",
+    "test": "npm run unit",
+    "test:coverage": "npm run unit -- --coverage"
   },
   "author": "",
   "license": "MIT",
