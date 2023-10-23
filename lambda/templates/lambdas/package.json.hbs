@@ -6,9 +6,11 @@
   "scripts": {
     "lint:prettier-fix": "pre-commit run prettier --all-files",
     "lint:eslint": "eslint .",
-    "compile": "tsc",
     "unit": "jest --config=jest.config.ts",
-    "test": "npm run compile && npm run unit"
+    "test": "npm run compile && npm run unit",
+    "pre-commit": "pre-commit run --all-files --show-diff-on-failure",
+    "pc": "npm run pre-commit",
+    "compile": "tsc"
   },
   "author": "alphagov",
   "license": "MIT",

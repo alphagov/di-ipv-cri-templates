@@ -10,11 +10,19 @@ Micro-templates for creating and developing Digital Identity Credential Issuers
 npm install -g plop
 ```
 
-2. Inside the directory to apply the templates
+1. Apply templates
+
+From inside the directory to apply the templates
 
 ```bash
 plop --plopfile ../di-ipv-cri-templates/plopfile.mjs --dest .
 
+```
+
+or from this repo
+
+```bash
+npm run plop [-- --dest <destination>]
 ```
 
 ## Options
