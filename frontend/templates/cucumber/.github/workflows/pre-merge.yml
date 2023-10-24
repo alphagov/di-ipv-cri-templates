@@ -1,0 +1,42 @@
+name: Run Browser Tests
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Step 1 - Checkout main branch from GitHub
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+
+      - name: Start Docker
+        run: docker compose up web mocks --detach
+        working-directory: tests/docker
+
+      - name: Sleep for 10 seconds
+        run: sleep 10s
+        shell: bash
+
+      - name: Run Cucumber tests
+        run: docker compose up cucumber --exit-code-from cucumber
+        working-directory: tests/docker
+
+      - name: Stop Docker
+        run: docker compose down
+        working-directory: tests/docker
+        if: ${{ always() }}
