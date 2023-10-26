@@ -27,9 +27,9 @@ They can have a variety of different parts, in either a root file, or a folder w
 - `steps.js` - Step definitions
 - `validators/` - Validator functions
 
-## di-ipv-cri-common-express
+## ipv-cri-common-express
 
-[common-express](https://github.com/alphagov/di-ipv-cri-common-express/) is a shared library used by Credential Issuer frontends for:
+[common-express](https://github.com/govuk-one-login/ipv-cri-common-express/) is a shared library used by Credential Issuer frontends for:
 
 - UI components
 - frontend assets

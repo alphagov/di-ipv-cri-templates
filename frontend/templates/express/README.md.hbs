@@ -1,20 +1,20 @@
-# di-ipv-cri-{{ kebabCase criName }}-front
+# ipv-cri-{{ kebabCase criName }}-front
 
-[![Github Action: Unit Tests](https://github.com/alphagov/di-ipv-cri-{{ kebabCase criName}}-front/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/alphagov/di-ipv-cri-{{ kebabCase criName }}-front/actions/workflows/unit-tests.yml?query=branch%3Amain)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alphagov_di-ipv-cri-{{ kebabCase criName}}-front&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alphagov_di-ipv-cri-{{ kebabCase criName }}-front)
+[![Github Action: Unit Tests](https://github.com/govuk-one-login/ipv-cri-{{ kebabCase criName}}-front/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/govuk-one-login/ipv-cri-{{ kebabCase criName }}-front/actions/workflows/unit-tests.yml?query=branch%3Amain)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ipv-cri-{{ kebabCase criName}}-front&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ipv-cri-{{ kebabCase criName }}-front)
 
-> Note: This repository is templated as part of [di-ipv-cri-templates](https://github.com/alphagov/di-ipv-cri-templates), and any substational changes that can be shared should be included back into that repository for re-use elsewhere
+> Note: This repository is templated as part of [ipv-cri-templates](https://github.com/govuk-one-login/ipv-cri-templates), and any substational changes that can be shared should be included back into that repository for re-use elsewhere
 
 {{ titleCase criName }} Credential Issuer Frontend is a Credential Issuer as part of the GOV.UK One Login programme.
 
 There are two main repositories that comprise this credential issuer:
 
 - This is the website used for displaying the {{ titleCase criName }} Credential Issuer.
-- There is a related [api repository](https://github.com/alphagov/di-ipv-cri-{{ kebabCase criName }}-api) that contains the backend API that provides all the data interaction consumed
+- There is a related [api repository](https://github.com/govuk-one-login/ipv-cri-{{ kebabCase criName }}-api) that contains the backend API that provides all the data interaction consumed
 
 For frontend specific work there are the following repositories:
 
-- There is a [shared library repository](https://github.com/alphagov/di-ipv-cri-common-express)
+- There is a [shared library repository](https://github.com/govuk-one-login/ipv-cri-common-express)
 - This contains Express middleware, shared JavaScript and Sass files, and shared templates
 
 ## Quick Start
@@ -32,7 +32,7 @@ The following quickstart process details how to install and run the CRI frontend
 1. Clone repository and change directory:
 
 ```
-git clone https://github.com/alphagov/di-ipv-cri-{{ kebabCase criName }}-front && cd di-ipv-cri-{{ kebabCase criName }}-front
+git clone https://github.com/govuk-one-login/ipv-cri-{{ kebabCase criName }}-front && cd ipv-cri-{{ kebabCase criName }}-front
 ```
 
 2. Install node dependencies:
@@ -95,7 +95,7 @@ This is configured in the frontend application using the `API_BASE_URL` environm
 
 ### Mock API
 
-A standalone mock of the [api](https://github.com/alphagov/di-ipv-cri-{{ kebabCase criName }}-api) is provided using a combination of the API's OpenAPI config and hand-crafted Imposter scenarios.
+A standalone mock of the [api](https://github.com/govuk-one-login/ipv-cri-{{ kebabCase criName }}-api) is provided using a combination of the API's OpenAPI config and hand-crafted Imposter scenarios.
 
 More details on how to run this are in the [Imposter folder](./tests/imposter/).
 
