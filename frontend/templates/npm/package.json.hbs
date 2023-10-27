@@ -10,12 +10,12 @@
     "build": "npm run build:sass && npm run build:js && npm run copy-assets",
     "build:js": "npm run build:js:application && npm run build:js:cookies && npm run build:js:all",
     "build:js:all": "mkdir -p dist/public/javascripts; uglifyjs node_modules/govuk-frontend/govuk/all.js node_modules/hmpo-components/all.js --beautify -o dist/public/javascripts/all.js",
-    "build:js:application": "mkdir -p dist/public/javascripts; uglifyjs src/assets/javascripts/application.js  node_modules/@govuk-one-login/ipv-cri-common-express/src/assets/javascript/application.js --beautify -o dist/public/javascripts/application.js",
-    "build:js:cookies": "mkdir -p dist/public/javascripts; uglifyjs node_modules/@govuk-one-login/ipv-cri-common-express/src/assets/javascript/cookies.js --beautify -o dist/public/javascripts/cookies.js",
+    "build:js:application": "mkdir -p dist/public/javascripts; uglifyjs src/assets/javascripts/application.js  node_modules/@govuk-one-login/di-ipv-cri-common-express/src/assets/javascript/application.js --beautify -o dist/public/javascripts/application.js",
+    "build:js:cookies": "mkdir -p dist/public/javascripts; uglifyjs node_modules/@govuk-one-login/di-ipv-cri-common-express/src/assets/javascript/cookies.js --beautify -o dist/public/javascripts/cookies.js",
     "build:js:minify": "uglifyjs src/assets/javascript/application.js -o src/assets/javascript/application.js -c -m && uglifyjs src/assets/javascript/cookies.js -o src/assets/javascript/cookies.js -c -m",
     "build:sass": "rm -rf dist/public/style.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
     "copy-assets": "mkdir -p dist && copyfiles -u 1 src/**/*.njk dist/ src/locales/**/** dist/ && copyfiles -u 3 src/assets/javascript/*.js dist/public/scripts",
-    "check-translation": "node node_modules/@govuk-one-login/ipv-cri-common-express/scripts/checkTranslations.js ../../../../src/locales/",
+    "check-translation": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js ../../../../src/locales/",
     "pre-commit": "pre-commit run --all-files --show-diff-on-failure",
     "pc": "npm run pre-commit",
     "test": "jest"
@@ -35,7 +35,7 @@
     "uglify-js": "3.17.4"
   },
   "dependencies": {
-    "@govuk-one-login/ipv-cri-common-express": "3.0.0",
+    "@govuk-one-login/di-ipv-cri-common-express": "3.0.0",
     "aws-sdk": "2.1376.0",
     "axios": "1.4.0",
     "cfenv": "1.2.4",
