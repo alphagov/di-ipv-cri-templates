@@ -4,11 +4,6 @@ export default async function (plop) {
     prompts: [
       {
         type: "input",
-        name: "criName",
-        message: "CRI Name?",
-      },
-      {
-        type: "input",
         name: "mainRoute",
         message: "URL path for the main route?",
       },
@@ -26,6 +21,7 @@ export default async function (plop) {
       },
     ],
     actions: function (data) {
+      data.criName = plop.getDestBasePath().split("/").slice(-1)[0];
       const actions = [];
 
       if (data.initOptions.includes("dotfiles")) {
