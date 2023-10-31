@@ -36,6 +36,15 @@ export default async function (plop) {
         },
         {
           type: "addMany",
+          destination: "./",
+          base: "templates/config",
+          templateFiles: "**",
+          globOptions: { dot: true },
+          verbose: true,
+          skipIfExists: true,
+        },
+        {
+          type: "addMany",
           destination: "./lambdas/{{ kebabCase lambdaName }}",
           base: "templates/lambdas",
           templateFiles: "**/**",

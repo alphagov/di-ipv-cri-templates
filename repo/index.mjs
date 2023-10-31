@@ -14,6 +14,7 @@ export default async function (plop) {
       },
     ],
     actions: function (data) {
+      data.criName = plop.getDestBasePath().split("/").slice(-1)[0];
       const actions = [];
 
       if (data.initOptions.includes("dotfiles")) {
@@ -26,9 +27,7 @@ export default async function (plop) {
           verbose: true,
           force: true,
         });
-      }
 
-      if (data.initOptions.includes("dotfiles")) {
         actions.push({
           type: "addMany",
           destination: ".github",

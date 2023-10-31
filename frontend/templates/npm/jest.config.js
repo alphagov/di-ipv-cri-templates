@@ -11,7 +11,6 @@ const wipCoveragePathIgnorePatterns = [
 
 module.exports = {
   clearMocks: true,
-  collectCoverage: true,
   collectCoverageFrom: ["src/**/*.{js,ts}", "!**/tests/**"],
   coverageDirectory: "coverage",
   coverageProvider: "v8",

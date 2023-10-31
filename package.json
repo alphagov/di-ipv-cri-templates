@@ -17,6 +17,7 @@
     "pc": "npm run pre-commit"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "plop": "^4.0.0"
   }
 }
