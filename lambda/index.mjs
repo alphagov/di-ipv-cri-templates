@@ -1,3 +1,5 @@
+import * as path from "path";
+
 export default async function (plop) {
   plop.setGenerator("lambda:workflow:tests", {
     description: "General configuration for lambdas",
@@ -24,7 +26,7 @@ export default async function (plop) {
       },
     ],
     actions: function (data) {
-      data.criName = plop.getDestBasePath().split("/").slice(-1)[0];
+      data.criName = path.basename(plop.getDestBasePath());
 
       return [
         {

@@ -1,3 +1,5 @@
+import path from "path";
+
 export default async function (plop) {
   plop.setGenerator("frontend:init", {
     description: "Init a FE with general configuration",
@@ -21,7 +23,7 @@ export default async function (plop) {
       },
     ],
     actions: function (data) {
-      data.criName = plop.getDestBasePath().split("/").slice(-1)[0];
+      data.criName = path.basename(plop.getDestBasePath());
       const actions = [];
 
       if (data.initOptions.includes("dotfiles")) {
