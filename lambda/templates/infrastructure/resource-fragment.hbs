@@ -7,6 +7,8 @@
     Properties:
       CodeUri: ../lambdas/{{ kebabCase lambdaName }}
       Handler: src/{{ kebabCase lambdaName }}-handler.lambdaHandler
+      CodeSigningConfigArn:
+        !If [EnforceCodeSigning, !Ref CodeSigningConfigArn, !Ref AWS::NoValue]
       FunctionUrlConfig:
         AuthType: AWS_IAM
         Cors:

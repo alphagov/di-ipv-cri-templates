@@ -2,14 +2,25 @@ AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: "Digital Identity {{ kebabCase criName }}"
 
+Parameters:
+  CodeSigningConfigArn:
+    Type: String
+    Default: ""
+  PermissionsBoundary:
+    Type: String
+    Default: ""
+
+Conditions:
+  EnforceCodeSigning: !Not [!Equals [!Ref CodeSigningConfigArn, ""]]
+  UsePermissionsBoundary: !Not [!Equals [!Ref PermissionsBoundary, ""]]
+
 Globals:
   Function:
     Timeout: 3
     Runtime: nodejs18.x
     Architectures: [arm64]
-    PermissionsBoundary: !If [UsePermissionsBoundary, !Ref PermissionsBoundary, !Ref AWS::NoValue]
-    CodeSigningConfigArn: !If [EnforceCodeSigning, !Ref CodeSigningConfigArn, !Ref AWS::NoValue]
+    PermissionsBoundary:
+      !If [UsePermissionsBoundary, !Ref PermissionsBoundary, !Ref AWS::NoValue]
 
 Resources:
-
 Outputs:
