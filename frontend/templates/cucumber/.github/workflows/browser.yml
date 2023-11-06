@@ -29,4 +29,4 @@ jobs:
       - name: Stop Docker
         run: docker compose down
         working-directory: tests/docker
-        if: ${{ always() }}
+        if: $\{{ always() }}
