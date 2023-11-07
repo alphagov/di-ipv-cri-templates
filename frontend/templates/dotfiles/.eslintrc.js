@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     node: true,
     es6: true,
@@ -10,8 +11,8 @@ module.exports = {
     expect: true,
     setupDefaultMocks: "readonly",
   },
-  root: true,
-  extends: ["eslint:recommended", "prettier"],
+  extends: ["eslint:recommended", "plugin:prettier/recommended"],
+  ignorePatterns: ["node_modules", "build", "dist", "coverage"],
   rules: {
     "no-console": 2,
     "padding-line-between-statements": [
