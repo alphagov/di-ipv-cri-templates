@@ -5,8 +5,7 @@
       BuildProperties:
         Sourcemap: true
     Properties:
-      CodeUri: ../lambdas/{{ kebabCase lambdaName }}
-      Handler: src/{{ kebabCase lambdaName }}-handler.lambdaHandler
+      Handler: lambdas/{{ kebabCase lambdaName }}/src/{{ kebabCase lambdaName }}-handler.lambdaHandler
       CodeSigningConfigArn:
         !If [EnforceCodeSigning, !Ref CodeSigningConfigArn, !Ref AWS::NoValue]
       FunctionUrlConfig:
