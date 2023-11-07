@@ -9,6 +9,7 @@ repos:
       - id: check-case-conflict
       - id: detect-private-key
       - id: end-of-file-fixer
+        exclude: lambda/templates/infrastructure/template.hbs
       - id: no-commit-to-branch
       - id: trailing-whitespace
   - repo: https://github.com/Yelp/detect-secrets

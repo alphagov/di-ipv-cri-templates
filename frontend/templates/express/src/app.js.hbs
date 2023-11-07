@@ -74,9 +74,9 @@ const { app, router } = setup({
   publicDirs: ["../dist/public"],
   views: [
     path.resolve(
-    path.dirname(
-      require.resolve("@govuk-one-login/di-ipv-cri-common-express")
-    ),
+      path.dirname(
+        require.resolve("@govuk-one-login/di-ipv-cri-common-express")
+      ),
       "components"
     ),
     "views",

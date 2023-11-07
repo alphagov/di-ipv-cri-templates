@@ -1,3 +1,5 @@
+import path from "path";
+
 export default async function (plop) {
   plop.setGenerator("repo:init", {
     description: "Init a repo with general configuration",
@@ -14,7 +16,6 @@ export default async function (plop) {
       },
     ],
     actions: function (data) {
-      data.criName = plop.getDestBasePath().split("/").slice(-1)[0];
       const actions = [];
 
       if (data.initOptions.includes("dotfiles")) {
