@@ -13,8 +13,6 @@
     "build:sass": "rm -rf dist/public/style.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
     "copy-assets": "mkdir -p dist && copyfiles -u 1 src/**/*.njk dist/ src/locales/**/** dist/ && copyfiles -u 3 src/assets/javascript/*.js dist/public/scripts",
     "check-translation": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js ../../../../src/locales/",
-    "pre-commit": "pre-commit run --all-files --show-diff-on-failure",
-    "pc": "npm run pre-commit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "unit": "jest --silent",
