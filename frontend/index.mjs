@@ -14,29 +14,16 @@ export default async function (plop) {
         name: "initOptions",
         message: "What would you like to initialise?",
         choices: [
-          { name: ".dotfiles", value: "dotfiles" },
+          { name: "config", value: "config" },
           { name: "Cucumber", value: "cucumber" },
           { name: "Express Webserver", value: "express" },
           { name: "Imposter", value: "imposter" },
-          { name: "npm", value: "npm" },
         ],
       },
     ],
     actions: function (data) {
       data.criName = path.basename(plop.getDestBasePath());
       const actions = [];
-
-      if (data.initOptions.includes("dotfiles")) {
-        actions.push({
-          type: "addMany",
-          destination: "./",
-          base: "templates/dotfiles",
-          templateFiles: "templates/dotfiles/.*",
-          globOptions: { dot: true },
-          verbose: true,
-          force: true,
-        });
-      }
 
       if (data.initOptions.includes("express")) {
         actions.push({
@@ -71,12 +58,12 @@ export default async function (plop) {
         });
       }
 
-      if (data.initOptions.includes("npm")) {
+      if (data.initOptions.includes("config")) {
         actions.push({
           type: "addMany",
           destination: "./",
-          base: "templates/npm",
-          templateFiles: "templates/npm/*",
+          base: "templates/config",
+          templateFiles: "templates/config/*",
           globOptions: { dot: true },
           verbose: true,
           force: true,
