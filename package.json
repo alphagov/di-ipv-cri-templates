@@ -2,7 +2,6 @@
   "name": "ipv-cri-templates",
   "description": "Micro-templates for creating and developing Digital Identity Credential Issuers",
   "homepage": "https://github.com/govuk-one-login/ipv-cri-templates#readme",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/govuk-one-login/ipv-cri-templates.git"
