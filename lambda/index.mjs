@@ -1,23 +1,60 @@
 import * as path from "path";
 
+const workflowActions = [
+  {
+    type: "addMany",
+    destination: "./.github/workflows",
+    base: "templates/workflows",
+    templateFiles: "**",
+    skipIfExists: true,
+    verbose: true,
+  },
+];
+
+const configActions = [
+  {
+    type: "addMany",
+    destination: "./",
+    base: "templates/config",
+    templateFiles: "**",
+    globOptions: { dot: true },
+    verbose: true,
+    skipIfExists: true,
+  },
+];
+
 export default async function (plop) {
-  plop.setGenerator("lambda:workflow:tests", {
-    description: "General configuration for lambdas",
-    prompts: [],
-    actions: [
+  plop.setGenerator("lambda:config", {
+    description: "General configuration for lambda repos",
+    prompts: [
       {
-        type: "add",
-        skipIfExists: false,
-        force: true,
-        path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
-        templateFile:
-          "./templates/workflows/pre-merge-run-lambda-unit-tests.yml",
+        type: "checkbox",
+        name: "initOptions",
+        message: "What would you like to initialise?",
+        choices: [
+          { name: "config", value: "config" },
+          { name: "workflows", value: "workflows" },
+        ],
       },
     ],
+    actions: function (data) {
+      data.criName = path.basename(plop.getDestBasePath());
+      const actions = [];
+
+      if (data.initOptions.includes("workflows")) {
+        actions.push(...workflowActions);
+      }
+
+      if (data.initOptions.includes("config")) {
+        actions.push(...configActions);
+      }
+
+      return actions;
+    },
   });
 
   plop.setGenerator("lambda:new", {
-    description: "General configuration for lambdas",
+    description: "Add a new lambda to a repo and initialise config",
     prompts: [
       {
         type: "input",
@@ -29,22 +66,8 @@ export default async function (plop) {
       data.criName = path.basename(plop.getDestBasePath());
 
       return [
-        {
-          type: "add",
-          skipIfExists: true,
-          path: "./.github/workflows/pre-merge-run-lambda-unit-tests.yml",
-          templateFile:
-            "./templates/workflows/pre-merge-run-lambda-unit-tests.yml",
-        },
-        {
-          type: "addMany",
-          destination: "./",
-          base: "templates/config",
-          templateFiles: "**",
-          globOptions: { dot: true },
-          verbose: true,
-          skipIfExists: true,
-        },
+        ...workflowActions,
+        ...configActions,
         {
           type: "addMany",
           destination: "./lambdas/{{ kebabCase lambdaName }}",
