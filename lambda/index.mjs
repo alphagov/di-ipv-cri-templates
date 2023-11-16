@@ -8,7 +8,7 @@ const configActions = [
     templateFiles: "**",
     globOptions: { dot: true },
     verbose: true,
-    skipIfExists: true,
+    force: true,
   },
 ];
 
