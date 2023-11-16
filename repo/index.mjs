@@ -1,5 +1,3 @@
-import path from "path";
-
 export default async function (plop) {
   plop.setGenerator("repo:init", {
     description: "Init a repo with general configuration",
@@ -10,7 +8,7 @@ export default async function (plop) {
         message: "What would you like to initialise?",
         choices: [
           { name: ".dotfiles", value: "dotfiles" },
-          { name: "GitHub templates", value: "github" },
+          { name: "GitHub Workflows", value: "workflows" },
           { name: "Repo documentation", value: "docs" },
         ],
       },
@@ -28,7 +26,9 @@ export default async function (plop) {
           verbose: true,
           force: true,
         });
+      }
 
+      if (data.initOptions.includes("workflows")) {
         actions.push({
           type: "addMany",
           destination: ".github",

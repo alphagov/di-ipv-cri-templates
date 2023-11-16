@@ -1,16 +1,5 @@
 import * as path from "path";
 
-const workflowActions = [
-  {
-    type: "addMany",
-    destination: "./.github/workflows",
-    base: "templates/workflows",
-    templateFiles: "**",
-    skipIfExists: true,
-    verbose: true,
-  },
-];
-
 const configActions = [
   {
     type: "addMany",
@@ -26,30 +15,10 @@ const configActions = [
 export default async function (plop) {
   plop.setGenerator("lambda:config", {
     description: "General configuration for lambda repos",
-    prompts: [
-      {
-        type: "checkbox",
-        name: "initOptions",
-        message: "What would you like to initialise?",
-        choices: [
-          { name: "config", value: "config" },
-          { name: "workflows", value: "workflows" },
-        ],
-      },
-    ],
+    prompts: [],
     actions: function (data) {
       data.criName = path.basename(plop.getDestBasePath());
-      const actions = [];
-
-      if (data.initOptions.includes("workflows")) {
-        actions.push(...workflowActions);
-      }
-
-      if (data.initOptions.includes("config")) {
-        actions.push(...configActions);
-      }
-
-      return actions;
+      return configActions;
     },
   });
 
@@ -66,13 +35,12 @@ export default async function (plop) {
       data.criName = path.basename(plop.getDestBasePath());
 
       return [
-        ...workflowActions,
         ...configActions,
         {
           type: "addMany",
           destination: "./lambdas/{{ kebabCase lambdaName }}",
           base: "templates/lambdas",
-          templateFiles: "**/**",
+          templateFiles: "**",
           globOptions: { dot: true },
           verbose: true,
           force: true,
