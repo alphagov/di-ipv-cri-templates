@@ -32,3 +32,14 @@ jobs:
           coverage-artifact: $\{{ needs.unit-tests.outputs.coverage-artifact }}
           github-token: $\{{ secrets.GITHUB_TOKEN }}
           sonar-token: $\{{ secrets.SONAR_TOKEN }}
+
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - name: Run a CodeQL scan
+        uses: govuk-one-login/github-actions/code-quality/codeql@b2b6fc5df355031fd08cef37fa13a93670a45899
+        with:
+          languages: javascript-typescript
