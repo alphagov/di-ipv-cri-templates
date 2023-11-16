@@ -42,23 +42,10 @@ export default async function (plop) {
 
       if (data.initOptions.includes("docs")) {
         actions.push({
-          type: "add",
-          path: "CODEOWNERS",
-          templateFile: "templates/CODEOWNERS",
-          verbose: true,
-          force: true,
-        });
-        actions.push({
-          type: "add",
-          path: "LICENSE",
-          templateFile: "templates/LICENSE",
-          verbose: true,
-          force: true,
-        });
-        actions.push({
-          type: "add",
-          path: "SECURITY.md",
-          templateFile: "templates/SECURITY.md",
+          type: "addMany",
+          destination: "./",
+          base: "templates/docs",
+          templateFiles: "**",
           verbose: true,
           force: true,
         });
