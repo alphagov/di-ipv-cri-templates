@@ -12,6 +12,30 @@ const configActions = [
   },
 ];
 
+const lambdaConfigActions = [
+  {
+    type: "addMany",
+    destination: "./lambdas/{{ kebabCase lambdaName }}",
+    base: "templates/lambdas",
+    templateFiles: "templates/lambdas/*",
+    globOptions: { dot: true },
+    verbose: true,
+    force: true,
+  },
+];
+
+const lambdaSourceActions = [
+  {
+    type: "addMany",
+    destination: "./lambdas/{{ kebabCase lambdaName }}",
+    base: "templates/lambdas",
+    templateFiles: "templates/lambdas/**/*",
+    globOptions: { globstar: false },
+    verbose: true,
+    force: true,
+  },
+];
+
 export default async function (plop) {
   plop.setGenerator("lambda:config", {
     description: "General configuration for lambda repos",
@@ -19,6 +43,21 @@ export default async function (plop) {
     actions: function (data) {
       data.criName = path.basename(plop.getDestBasePath());
       return configActions;
+    },
+  });
+
+  plop.setGenerator("lambda:update", {
+    description: "Update config for an existing lambda and its repo",
+    prompts: [
+      {
+        type: "input",
+        name: "lambdaName",
+        message: "Name of Lambda?",
+      },
+    ],
+    actions: function (data) {
+      data.criName = path.basename(plop.getDestBasePath());
+      return lambdaConfigActions;
     },
   });
 
@@ -36,15 +75,8 @@ export default async function (plop) {
 
       return [
         ...configActions,
-        {
-          type: "addMany",
-          destination: "./lambdas/{{ kebabCase lambdaName }}",
-          base: "templates/lambdas",
-          templateFiles: "**",
-          globOptions: { dot: true },
-          verbose: true,
-          force: true,
-        },
+        ...lambdaConfigActions,
+        ...lambdaSourceActions,
         {
           type: "add",
           skipIfExists: true,
