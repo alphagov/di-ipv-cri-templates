@@ -1,16 +1,5 @@
 import * as path from "path";
 
-const workflowActions = [
-  {
-    type: "addMany",
-    destination: "./.github/workflows",
-    base: "templates/workflows",
-    templateFiles: "**",
-    skipIfExists: true,
-    verbose: true,
-  },
-];
-
 const configActions = [
   {
     type: "addMany",
@@ -19,37 +8,56 @@ const configActions = [
     templateFiles: "**",
     globOptions: { dot: true },
     verbose: true,
-    skipIfExists: true,
+    force: true,
+  },
+];
+
+const lambdaConfigActions = [
+  {
+    type: "addMany",
+    destination: "./lambdas/{{ kebabCase lambdaName }}",
+    base: "templates/lambdas",
+    templateFiles: "templates/lambdas/*",
+    globOptions: { dot: true },
+    verbose: true,
+    force: true,
+  },
+];
+
+const lambdaSourceActions = [
+  {
+    type: "addMany",
+    destination: "./lambdas/{{ kebabCase lambdaName }}",
+    base: "templates/lambdas",
+    templateFiles: "templates/lambdas/**/*",
+    globOptions: { globstar: false },
+    verbose: true,
+    force: true,
   },
 ];
 
 export default async function (plop) {
   plop.setGenerator("lambda:config", {
     description: "General configuration for lambda repos",
+    prompts: [],
+    actions: function (data) {
+      data.criName = path.basename(plop.getDestBasePath());
+      return configActions;
+    },
+  });
+
+  plop.setGenerator("lambda:update", {
+    description: "Update config for an existing lambda and its repo",
     prompts: [
       {
-        type: "checkbox",
-        name: "initOptions",
-        message: "What would you like to initialise?",
-        choices: [
-          { name: "config", value: "config" },
-          { name: "workflows", value: "workflows" },
-        ],
+        type: "input",
+        name: "lambdaName",
+        message: "Name of Lambda?",
       },
     ],
     actions: function (data) {
       data.criName = path.basename(plop.getDestBasePath());
-      const actions = [];
-
-      if (data.initOptions.includes("workflows")) {
-        actions.push(...workflowActions);
-      }
-
-      if (data.initOptions.includes("config")) {
-        actions.push(...configActions);
-      }
-
-      return actions;
+      return lambdaConfigActions;
     },
   });
 
@@ -66,17 +74,9 @@ export default async function (plop) {
       data.criName = path.basename(plop.getDestBasePath());
 
       return [
-        ...workflowActions,
         ...configActions,
-        {
-          type: "addMany",
-          destination: "./lambdas/{{ kebabCase lambdaName }}",
-          base: "templates/lambdas",
-          templateFiles: "**/**",
-          globOptions: { dot: true },
-          verbose: true,
-          force: true,
-        },
+        ...lambdaConfigActions,
+        ...lambdaSourceActions,
         {
           type: "add",
           skipIfExists: true,

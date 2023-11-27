@@ -1,9 +1,17 @@
-name: pre-commit
+name: Check PR
 
 on: pull_request
-permissions: {}
+permissions: read-all
+
+concurrency:
+  group: check-pr-$\{{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
+  unit-tests:
+    name: Run tests
+    uses: ./.github/workflows/unit-tests.yml
+
   pre-commit:
     name: pre-commit
     runs-on: ubuntu-latest

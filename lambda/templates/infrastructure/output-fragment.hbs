@@ -1,9 +1,9 @@
   {{ pascalCase lambdaName }}FunctionURLEndpoint:
     Description: Endpoint URL for {{ pascalCase lambdaName }} function
     Value: !GetAtt {{ pascalCase lambdaName }}FunctionUrl.FunctionUrl
-  {{ pascalCase lambdaName }}Function:
+  {{ pascalCase lambdaName }}FunctionArn:
     Description: {{ pascalCase lambdaName }} Lambda Function ARN
     Value: !GetAtt {{ pascalCase lambdaName }}Function.Arn
-  {{ pascalCase lambdaName }}FunctionIamRole:
+  {{ pascalCase lambdaName }}FunctionIamRoleArn:
     Description: Implicit IAM Role created for {{ pascalCase lambdaName }} function
     Value: !GetAtt {{ pascalCase lambdaName }}FunctionRole.Arn
