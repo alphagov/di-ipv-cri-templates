@@ -8,6 +8,10 @@ on:
     # Every Monday at 9am
     - cron: "0 9 * * 1"
 
+concurrency:
+  group: codeql-{{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 permissions: read-all
 
 jobs:
