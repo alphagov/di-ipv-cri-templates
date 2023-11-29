@@ -22,6 +22,6 @@ jobs:
       security-events: write
     steps:
       - name: Run a CodeQL scan
-        uses: govuk-one-login/github-actions/code-quality/codeql@b2b6fc5df355031fd08cef37fa13a93670a45899
+        uses: govuk-one-login/github-actions/code-quality/codeql@cd7d35dde348251237efbbaee5345e95adef0321
         with:
           languages: javascript-typescript
