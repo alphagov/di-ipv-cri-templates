@@ -12,6 +12,18 @@ const configActions = [
   },
 ];
 
+const workflowActions = [
+  {
+    type: "addMany",
+    destination: ".github/workflows",
+    base: "templates/.github/workflows",
+    templateFiles: "**",
+    globOptions: { dot: true },
+    verbose: true,
+    force: true,
+  },
+];
+
 const lambdaConfigActions = [
   {
     type: "addMany",
@@ -40,10 +52,13 @@ export default async function (plop) {
   plop.setGenerator("lambda:config", {
     description: "General configuration for lambda repos",
     prompts: [],
-    actions: function (data) {
-      data.criName = path.basename(plop.getDestBasePath());
-      return configActions;
-    },
+    actions: createActions(plop, configActions),
+  });
+
+  plop.setGenerator("lambda:workflows", {
+    description: "GitHub Actions workflows for lambda repos",
+    prompts: [],
+    actions: createActions(plop, workflowActions),
   });
 
   plop.setGenerator("lambda:update", {
@@ -55,10 +70,7 @@ export default async function (plop) {
         message: "Name of Lambda?",
       },
     ],
-    actions: function (data) {
-      data.criName = path.basename(plop.getDestBasePath());
-      return lambdaConfigActions;
-    },
+    actions: createActions(plop, lambdaConfigActions),
   });
 
   plop.setGenerator("lambda:new", {
@@ -70,33 +82,36 @@ export default async function (plop) {
         message: "Name of Lambda?",
       },
     ],
-    actions: function (data) {
-      data.criName = path.basename(plop.getDestBasePath());
-
-      return [
-        ...configActions,
-        ...lambdaConfigActions,
-        ...lambdaSourceActions,
-        {
-          type: "add",
-          skipIfExists: true,
-          path: "./infrastructure/template.yaml",
-          templateFile: "./templates/infrastructure/template.hbs",
-          verbose: true,
-        },
-        {
-          type: "append",
-          path: "./infrastructure/template.yaml",
-          pattern: /(Resources:)/,
-          templateFile: "./templates/infrastructure/resource-fragment.hbs",
-        },
-        {
-          type: "append",
-          path: "./infrastructure/template.yaml",
-          pattern: /(Outputs:)/,
-          templateFile: "./templates/infrastructure/output-fragment.hbs",
-        },
-      ];
-    },
+    actions: createActions(plop, [
+      ...configActions,
+      ...lambdaConfigActions,
+      ...lambdaSourceActions,
+      {
+        type: "add",
+        skipIfExists: true,
+        path: "./infrastructure/template.yaml",
+        templateFile: "./templates/infrastructure/template.hbs",
+        verbose: true,
+      },
+      {
+        type: "append",
+        path: "./infrastructure/template.yaml",
+        pattern: /(Resources:)/,
+        templateFile: "./templates/infrastructure/resource-fragment.hbs",
+      },
+      {
+        type: "append",
+        path: "./infrastructure/template.yaml",
+        pattern: /(Outputs:)/,
+        templateFile: "./templates/infrastructure/output-fragment.hbs",
+      },
+    ]),
   });
 }
+
+const createActions = (plop, actions) =>
+  function (data) {
+    data.criName = path.basename(plop.getDestBasePath());
+    data.criNameShort = data.criName.replace(/^ipv-cri-/, "");
+    return actions;
+  };
