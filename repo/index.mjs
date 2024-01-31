@@ -12,8 +12,21 @@ export default async function (plop) {
           { name: "Repo documentation", value: "docs" },
         ],
       },
+      {
+        when: (data) => {
+          return data.initOptions.includes("docs");
+        },
+        type: "checkbox",
+        name: "docs",
+        message: "Which docs would you like to include?",
+        choices: [
+          { name: "CODEOWNERS", value: "CODEOWNERS" },
+          { name: "license", value: "license" },
+        ],
+      },
     ],
     actions: function (data) {
+      console.log(data);
       const actions = [];
 
       if (data.initOptions.includes("dotfiles")) {
@@ -41,14 +54,25 @@ export default async function (plop) {
       }
 
       if (data.initOptions.includes("docs")) {
-        actions.push({
-          type: "addMany",
-          destination: "./",
-          base: "templates/docs",
-          templateFiles: "**",
-          verbose: true,
-          force: true,
-        });
+        if (data.docs.includes("CODEOWNERS")) {
+          actions.push({
+            type: "add",
+            skipIfExists: false,
+            path: "./CODEOWNERS",
+            templateFile: "./templates/docs/CODEOWNERS",
+            verbose: true,
+          });
+        }
+
+        if (data.docs.includes("license")) {
+          actions.push({
+            type: "add",
+            skipIfExists: false,
+            path: "./LICENSE",
+            templateFile: "./templates/docs/LICENSE",
+            verbose: true,
+          });
+        }
       }
 
       return actions;

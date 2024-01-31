@@ -1,1 +1,6 @@
-* @govuk-one-login/cri-orange-team @govuk-one-login/cri-orange-admins @govuk-one-login/cri-lime-team-leads # Team ownership with break-glass overrides
+# Team ownership with break-glass overrides
+* @govuk-one-login/cri-orange-team @govuk-one-login/cri-orange-admins @govuk-one-login/cri-lime-team-leads
+
+# Identity Pod SREs required for review of infrastructure
+infrastructure/* @govuk-one-login/identity-sre-admins
+deploy/* @govuk-one-login/identity-sre-admins
